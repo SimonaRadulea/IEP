@@ -32,7 +32,7 @@ Cat::Cat(const Cat& rhs) :
 Cat& Cat::operator=(const Cat& rhs)
 {
     // Item 11, identity test: if it is a self-assigment, do nothing
-    if(name == rhs.name && color == rhs.color && age == rhs.age)
+    if(this == &rhs)
     {
         cout<<"Objects are the same, no copy needed! \n";
         return *this;
@@ -56,6 +56,9 @@ int main(){
     C1.getCat();
     C2.getCat();
 
+    // Use Cat copy assigment operator for self assignment
+    C1 = C1;
+
     // Use Cat copy constructor
     Cat C4(C1);
     C4.getCat();
@@ -71,11 +74,6 @@ int main(){
     C1.getCat();
     C2.getCat();
 
-    // Item 11, identity test
-    // Cat C5("Puf", "gray", 3);
-    // Cat C6(C5);
-    // C6.getCat();
-    // C5 = C6;
 
     return 0;
 }
